@@ -1,0 +1,19 @@
+# Security settings for uploads directory
+Options -Indexes
+
+# Deny execution of potentially dangerous files
+<FilesMatch "\.(php|phar|phtml|shtml|cgi|pl|exe|sh|bat)$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
+
+# Set security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options nosniff
+</IfModule>
+
+# Allow access to common file types
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf|doc|docx|txt|mov|mp4|avi)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

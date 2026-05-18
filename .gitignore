@@ -1,0 +1,8 @@
+# Ignore sensitive mail configuration
+config/mail.php
+
+# Ignore vendor directory if Composer is added later
+/vendor/
+
+# Environment variables
+.env
