@@ -6,3 +6,6 @@ config/mail.php
 
 # Environment variables
 .env
+
+# User Uploads
+uploads/
