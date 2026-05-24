@@ -20,6 +20,19 @@ CREATE TABLE `users` (
     INDEX `idx_active` (`is_active`)
 );
 
+-- Persistent login tokens ("remember me")
+CREATE TABLE `auth_tokens` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `selector` CHAR(24) NOT NULL UNIQUE,
+    `token_hash` CHAR(64) NOT NULL,
+    `expires_at` DATETIME NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    INDEX `idx_auth_tokens_user` (`user_id`),
+    INDEX `idx_auth_tokens_expires` (`expires_at`)
+);
+
 -- Problems table
 CREATE TABLE `problems` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
